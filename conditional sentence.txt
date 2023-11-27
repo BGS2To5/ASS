@@ -1,0 +1,63 @@
+ 	conditional sentence type 0, adalah conditional sentence yang digunakan untuk membuat kalimat pengandaian yang selalu terwujud
+( if + simple present, + simple prensent ) /
+( simple present + if + simple present )
+- If we burn paper, it becomes ash.
+- we feel sick if I eat too much.
+- people die if they don't eat.
+
+1.simple present tense
+(+) S + V1 (+s/es) / to be (is, am, are) + O.	(+) I go to school every day. 
+(-) S + do/does + not + VI + O			(-) I don’t go to school every day. 
+(?) do/does + S + VI + O			(?) Do you go to school every day?
+
+(+) S + to be (is, am, are) + O.		(+) My sister is a kindergarten student. 
+(-) S + to be (is, am, are) + not + O.		(-) My sister isn’t a kindergarten student
+(?) to be (is, am, are) + S + O.		(?) Is my sister a kindergarten student
+
+	conditional sentence type 1, adalah conditional sentence kemungkinan besar daapat terjadi di masa depan atau di masa depan
+( if + simple present, + simple future ) /
+( simple future + if + simple present )
+
+- if i meet him, i will introduce myself
+- i will cook dinner tonight if you clean the house
+- i will clean th house if you cook dinner tonight
+
+simple future tense
+(+) S + will + V1<==>S + is/am/are + going to + V1		(+) Mrs. Tari will teach us
+(-) S + will + not + V1<==> S + is/am/are + not + going to + V1	(-) Mrs. Tari won’t teach us
+(?) Will + S + V1?<==> Is/am/are + S + going to + V1?		(?) Will Mrs. Tari teach us?
+
+
+	conditional sentence type 2, adalah sebuah kalimat pengandaian yang tidak mungkin terjadi di waktu sekarang
+( if + simple past, + past future ) /
+( past future + if + simple past )
+
+- if she came home, i would be happy
+- if it rained, i would not be here
+- If I were you, I would continue my study
+
+simple past tense 
+(+) S + V2					(+) Beni washed his car yesterday
+(-) S + did not + V1				(-) Beni didn’t wash his car yesterday
+(?) Did + S + V1?				(?) Did Beni wash his car yesterday?
+
+past future = would + verb 1
+
+	conditional sentence type 3, adalah sebuah kalimat pengandaian yang tidak mungkin terjadi, karena waktunya sudah terlewat
+
+( if + past perfect, + past future perfect ) /
+( if + past future perfect, + past perfect )
+
+- if i had known you were in hospital, i'd have visited you
+- if i had worked harder i would have passed the exam
+
+past perfect continous tense
+(+) S + had + V3				(+) Tom had repaired his laptop before I borrowed it
+(-) S + had + not + V3				(-) Tom hadn’t repaired his laptop before I borrowed it
+(?) Had + S + V3?				(?) Had Tom repaired his laptop before I borrowed it?
+
+past future perfect continous tense
+(+) S + should/would + have + V3		(+) They would have cleaned the room when their neighbors came
+(-) S + should/would + not + have + V3		(-) They wouldn’t have cleaned the room when their neighbors came
+(?) Should/would + S + V3?			(?) Would they have cleaned the room when their neighbors came?
+ 
