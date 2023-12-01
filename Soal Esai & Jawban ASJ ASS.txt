@@ -1,0 +1,83 @@
+soal ASJ esai ASS (1.12.2023)
+1. Setting ftp kenapa bisa tidak ada root. home, dll
+2. Cara instal apache2
+3. package apa yang ada pada webmin 
+4. setting dns domain (lupa). contoh  tkjbisa.com, tkjoke.com
+5. langkah langkah install webmin
+
+JWB
+
+1. (pada vsftpd)
+ketikkan 
+nano etcvsftpd.conf
+(pada bagian paling bawah ketikkan) 
+chroot_local_user=YES
+allow_writeable_chroot=YES
+user_sub_token=$USER
+local_root=home$USER
+
+2. ketikkan 
+apt-get install apache2 -y
+
+3. - Menyediakan informasi tentang perangkat keras dan perangkat lunak sistem.
+    - Mengonfigurasi sistem, kita bisa mengatur konfigurasi sistem pada linux kita, seperti date & time, network, manajamen User & group dll.
+    - webmin juga menyediakan package server, seperti apache, BIND DNS Server, ProFTPD Server. kita juga bisa mengonfigurasinya
+
+4. (terlebih dahulu kita install layanan bind9 dahulu, dengan mengetikkan) 
+apt-get install bind9 apache2 -y
+cd etcbind
+nano named.conf.default-zones
+dipaling bawah ketikkan
+zone tkjbisa.com {
+	type master;
+	file etcbinddb.tkjbisa;
+};
+zone tkjoke.com {
+	type master;
+	file etcbinddb.tkjoke;
+};
+
+zone ip.ip.ip.in-addr.arpa {
+	type master;
+	file etcbinddb.ip;
+};
+save (ctrl x, y, enter)
+
+cp db.local db.tkjbisa
+cp db.local db.tkjoke
+cp db.127 db.ip
+
+nano db.tkjbisa
+ganti yang bernama localhost menjadi tkj.bisa
+ip 127.0.0.1 ganti menjadi ip debian kita 
+pada baris paling bawah ganti menjadi seperti ini 
+www    IN    CNAME    @
+save (ctrl x, y, enter)
+nano db.tkjoke
+ganti yang bernama localhost menjadi tkjoke.com
+ip 127.0.0.1 ganti menjadi ip debian kita 
+pada baris paling bawah ganti menjadi seperti ini 
+www    IN    CNAME    @
+save (ctrl x, y, enter)
+
+nano db.ip
+ganti yang bernama localhost menjadi tkjbisa.com
+hapus 1 baris pada baris yang ada di paling bawah. dan ketikkan 
+ip    IN    PTR    tkjbisa.com.
+ip    IN    PTR    tkjoke.com.
+save (ctrl x, y, enter)
+jangan lupa untuk me restart layanan bind9, dengan mengetikkan
+service bind9 restart
+
+
+5. untuk menginstall webmin pada server linux kita, kita harus memakai repository online. Maka dari itu adaptor yang kita gunakan adalah bridge (harus ada internetnya).
+ketikkan  
+wget httpwww.webmin.comjcameron-key.asc
+apt-key add jcameron-key.asc
+nano etcaptsource.list
+deb httpdownload.webmin.comdownloadrepository sarge contrib
+save (ctrl X, Y, enter)
+
+(pengujian)
+pada web browser yang kita punya. ketikkan
+httpsIP_Server_Kita10000
