@@ -1,0 +1,183 @@
+{ DHCP }
+apt-get install isc-dhcp-server -y
+nano /etc/dhcp/dhcpd.conf
+subnet 192.100.100.0 netmask 255.255.255.0 {
+ range 192.100.100.2 192.100.100.254; 
+ option domain-name-servers 192.100.100.1;
+ option domain-name "latief.com"; 
+ option routers 192.100.100.1; 
+ option broadcast-address 192.100.100.255; 
+ default-lease-time 600; 
+ max-lease-time 7200;
+}
+
+nano /etc/default/isc-dhcp-server
+pada INTERFACESv4, isikan "enp0s3"
+
+lalu, /etc/init.d/isc-dhcp-server restart
+
+
+{FTP}
+(buat user untuk menyimpan ftp terlebih dahulu) contoh:
+cd /home
+adduser gilang
+(lalu masukkan password jgn sampai lupa, enter sampai selesai)
+
+- Proftpd
+apt-get install proftp -y
+nano/etc/proftpd/proftpd.conf
+hapus tanda pagar pada default root (#DefaultRoot)
+dipaling bawah tuliskan teks seperti ini :
+<Anonymous /home/gilang>
+user	gilang
+</Anonymous>
+ctrl+o enter ctrl+x
+lalu ketikkan /etc/init.d/proftpd restart
+
+-vsftpd
+apt-get install vsftpd -y
+nano /etc/vsftpd.conf
+hapus tanda pagar pada (#write_enable=YES)
+pada paling bawah ketikkan seperti ini :
+chroot_local_user=YES
+allow_writeble_chroot=YES
+user_sub_token=gilang
+local_root=/home/gilang
+ctrl+o enter ctrl+x
+lalu ketikkan /etc/init.d/vsftpd restart
+
+
+{SSH}
+apt-get install openssh-server -y
+(agar bisa login menggunakan root root pada ssh) :
+nano /etc/ssh/sshd_config
+hapus pagar & "prohibit-password" (ganti menjadi yes), pada #PermitRootLogin
+contoh : PermitRootLogin YES
+ctrl+o enter ctrl+x
+/etc/init.d/ssh restart
+(hanya membatasi user)
+nano /etc/ssh/sshd_config
+kepaling bawah ketikkan 
+AllowUsers bgs
+ctrl+o enter ctrl+x
+/etc/init.d/ssh restart
+
+{samba}
+buat terlebih dahulu folder untuk menyimpan samba
+cd /home
+mkdir data
+apt-get install samba -y
+nano /etc/samba/smb.conf
+pada paling bawah ketikkan :
+[data]
+path		= /home/data
+browseable	= yes
+read only	= yes
+guest ok	= yes
+ctrl+o enter ctrl+x
+/etc/init.d/samba restart
+
+{BIND}
+apt-get install bind9 apache2 -y
+cd /etc/bind
+nano named.conf.default-zones
+dipaling bawah ketikkan
+zone "tkj.oke" {
+	type master;
+	file "/etc/bind/db.tkj";
+};
+zone "9.168.192.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.192";
+};
+ctrl+o enter ctrl+x
+cp db.local db.tkj
+cp db.127 db.192
+nano db.tkj
+ganti yang bernama "localhost" menjadi "tkj.oke"
+ip "127.0.0.1" ganti menjadi ip debian kita "192.168.9.1"
+pada baris paling bawah ganti menjadi seperti ini :
+www	IN	CNAME	@
+ctrl+o enter ctrl+x
+nano db.192
+ganti yang bernama "localhost" menjadi "tkj.oke"
+ganti "1.0.0" menjadi belakang dari ip debian kita "1"
+
+{VIRTUALHOST}
+(apt-get install php-cgi php-fpm libapache2-mod-php)
+apt-get install bind9 apache2 -y
+cd /etc/bind
+nano named.conf.default-zones
+dipaling bawah ketikkan
+zone "dian.com" {
+	type master;
+	file "/etc/bind/db.dian";
+};
+zone "budi.com" {
+	type master;
+	file "/etc/bind/db.budi";
+};
+zone "iwan.com" {
+	type master;
+	file "/etc/bind/db.iwan";
+};
+zone "9.168.192.in-addr.arpa" {
+	type master;
+	file "/etc/bind/db.192";
+ctrl+o enter ctrl+x
+cp db local db.dian
+cp db local db.budi
+cp db local db.iwan
+cp db 127 db.192
+nano db.dian
+ganti yang bernama "localhost" menjadi "dian.com"
+ip "127.0.0.1" ganti menjadi ip debian kita "192.168.9.1"
+pada baris paling bawah ganti menjadi seperti ini :
+www	IN	CNAME	@
+ctrl+o enter ctrl+x
+nano db.budi
+(sama seperti konfigurasi nano db.dian, namun "dian.com" diganti mejadi "budi.com")
+nano db.iwan
+(sama seperti konfigurasi nano db.dian, namun "dian.com" diganti mejadi "iwan.com")
+hapus 1 baris yang ada di paling bawah, lalu ketikkan:
+1	IN	PTR	dian.com
+1	IN	PTR	budi.com
+1	IN	PTR	iwan.com
+ctrl+o enter ctrl+x
+/etc/init.d bind9 restart
+(buat masing masing user untuk penyimpanan index.html)
+cd /home, adduser dian, budi, iwan (buat password dan jangan sampai lupa)
+buat folder html pada masing masing user : 
+mkdir /home/dian/html, mkdir /home/budi/html, mkdir /home/iwan/html
+buat index.html pada masing masing user contoh: nano /home/dian/html/index.html (buat tulisan masing masing dinamakan sesuai user)
+nano /etc/apache/apache2.conf
+hapus # pada bagian tulisan Directory pembuka dan Directory penutup
+ganti "/srv/" menjadi "/home/"
+lalu pergi ke cd/etc/apache/sites-enabled copy file yang ada disitu menjadi dian.conf, budi.conf, iwan.conf
+nano dian.conf
+tambahkan di bawah document root seperti ini :
+ServerName dian.com
+ServerAlias www.dian.com
+ganti /var/www/html menjadi /home/dian/html
+nano budi.conf
+(sama seperti dian.conf namun nama domain nya diganti menjadi budi.com dan user nya menjadi budi)
+nano iwan.conf
+(sama seperti dian.conf namun nama domain nya diganti menjadi iwan.com dan user nya menjadi iwan)
+/etc/init.d apache2 restart
+
+(Maria-db & PHPMyadmin)
+apt-get install phpmyadmin php mariadb-server
+(jika phpmayadmin eror ketikkan "apt --fix-broken install")
+mysql_secure_installation
+enter current password root? (enter saja tanpa diisi)
+set root password? (y) buat passsword jangan sampai lupa
+remove anonymous user? (y)
+Dissalow root login remotely? (n)
+remove database and acces? (y)
+reload privileges table? (y)
+mysql -u root -p
+(masukkan password yang dibuat tadi)
+use mysql;
+update user set plugin='' where user='root';
+flush privileges;
+exit
