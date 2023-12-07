@@ -1,0 +1,69 @@
+fungsi dns = sebagai database server yang menyimpan IP
+	server web yang dapat dijalankan di banyak sistem operasi yang berguna untuk melayani dan memfungsikan 
+situs web adalah = Apache
+	perintah tersebut diketikkan pada saat = konfigurasi samba
+	keluar tanpa menyimpan perubahan pada teks editor = g tau (ctrl + x lalu y)
+	membuat virtual host acces denied karena = apache2 tidak berjalan (mungkin)
+	syntax dns = option domain name server 192.168.1.100
+	setelah konfigurasi situs diaktifkan akan ke direktori = /etc/apache2/sites-enable
+	control panel yang dipake banyak admin	= Cpanel
+	menghapus file = rm
+	Apabila kita akan membuat installer melakukan partisi otomatis pada harddisk kita tetapi dengan membuat 
+LVM (Logical Volume Management) yaitu dengan memilih perintah = Guided - use entire disk and set up LVM
+	dimana letak direktori konfigurasi virtualhost = /etc/apache2/sites-available
+	ukuran harddisk default virtualbox = 8 gb
+	perintah linux menampilkan posisi kita saat ini = pwd
+	identik dengan batas waktu penyewaan alamt ip yang diberikan kepada dhcp client oleh server adalah = dhcp lease
+	mengentikan samba	= /sbin/service smb stop
+	pada file zila memasukkan ip/host di kolom = host
+	syarat minimal router harus memiliki interface berjumlah = 2 
+	pada tahap select your location posisi indonesia memiliki kode = GMT+7
+
+	[siswa] : nama folder yang akan ditampilkan pada jaringan
+	path : menunjukan lokasi folder/directory yang akan di share
+	browseable = yes : bertujuan agar folder yang bersangkutan di tampilkan pada jaringan
+	read only = berarti hanya dapat dilihat dan dibaca termasuk menyalin file
+	readonly = no : berarti mengizinkan semua user untuk melakukan perubahan pada sebuah directory.
+	guest ok = berarti ijin untuk tamu atau tanpa password
+	valid users = guru : pendefinisian user mana saja yang berhak untuk mengakses folder yang bersangkutan.
+	public = yes : berarti folder/directory bisa diakses oleh semua user/komputer atau secara anonymous.
+
+	777 : Tidak ada pembatasan pada file permission\. Setiap user dapat melakukan apa saja.
+755 : Pemilik file dapat melakukan (read, write, dan execute). Seluruh anggota group dan user lainnya dapat melakukan (read dan execute) file. Setting ini merupakan settingan yang umum untuk sebuah program yang biasa digunakan oleh user.
+700 : Pemilik file dapat melakukan (read, write, dan execute) terhadap file. Selain pemilik tidak diberikan hak akses apapun. setting ini berguna untuk program yang bersifat private bagi user.
+666 : Seluruh user dapat melakukan (read dan write) terhadap file yang ada.
+644 : Pemilik dapat melakukan (read dan write) terhadap file, Sementara Selain user hanya bisa membaca file.
+600 : Hanya pemilik bisa melakukan (read dan write) terhadap sebuah file. Sebuah settingan khusus bagi sebuah file yang pemiliknya menjadikan file private.
+
+
+	(install debian)
+	urutan instal debian = installer, bahasa, lokasi, Country to base default locale setting on (US), keymap (A.E), 
+	western (Sumatra, Jakarta, west and central Kalimantan), central ( sulawesi, Bali, NTT, east & south kalimantan)
+	eastern (maluku, papua) 
+	melakukan partisi otomatis pada harddisk kita, melakukan partisi otomatis pada harddisk kita tetapi dengan
+membuat LVM (Logical Volume Management)
+	tampilan debian berbasis GUI pilih juga Dekstop Environment dengan menekan (spasi), Setelah itu untuk 
+melanjutkan tekan enter,
+	pilih saja Tidak.karena kalau di scan disini mungkin ada beberapa aplikasi yang akan terinstall dvd yang 
+baru discan. Dan membuat waktu instalasi semakin lama berjalan.
+	agian ini sama seperti PINDAI CD/DVD itu bedanya adalah menggunakan internet repo. Setelah itu anda klik “Tidak” saja
+	kita ditanya apakah kita berpatisipasi dalam survey penggunaan paket debian ini? maka kita klik saja “Tidak”. 
+	akan menginstall boot loader GRUB pada master boot record, lalu akan memasang grub loader pada harddiks 
+(pilih hardisk yang sudah kita instal sebelumnya)
+
+subnet 192.100.100.0 netmask 255.255.255.0 {sebagai network & subnet mask pada DHCP )
+ range 192.100.100.2 192.100.100.254; ( Rentang IP yang diberikan kepada client )
+ option domain-name-servers 192.100.100.1; ( sebagai DNS DHCP )
+ option domain-name "latief.com"; ( sebagai nama domain )
+ option routers 192.100.100.1; ( akan menjadi gateway ke client )
+ option broadcast-address 192.100.100.255; ( Sebagai IP Broadcast )
+ default-lease-time 600; ( lama waktu server meminjamkan alamat IP kepada client selama 600 detik. )
+ max-lease-time 7200; (waktu maksimum server meminjamkan alamat IP kepada client selama 7200 detik. )
+
+mysql_secure_installation =
+Enter current password for root (enter for none): (masukkan pasword root, langsung enter jika tidak mau memberi password root)
+Change the root password? [Y/n] (Apakah ingin mengganti password root?)
+Remove anonymous users? [Y/n] (Apakah anda indin menghapus user Anonym?)
+Disallow root login remotely? [Y/n] (Apakah anda tidak mengijimkan user root login secara remote, harus dari localhost)
+Remove test database and access to it? [Y/n] ( Apakah ingin Hapus database dan user aksesnya? ) 
+Reload privilege tables now? [Y/n] (Apakah ingin me Reload tabel hak ases?)
